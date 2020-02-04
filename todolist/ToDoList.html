@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>To-Do List</title>
+  <link href="ToDoList.css" rel="stylesheet" type="text/css">
+ <script type="text/javascript" src="ToDoList.js"></script>
+</head>
+<body>
+	
+	<h1 class="head">My To-Do List</h1>
+	<input type="text" id="input" placeholder="What To-Do?">
+	 <span onclick="newElement()" class="addBtn">Add</span>
+	<ul id="list">
+		<li>Awake at 9 o'clock</li>
+		<li>Go to University</li>
+		<li>Have a lunch</li>
+		<li>Drink Water</li>
+		<li>Go to the bed at 12 o'clock</li>
+	</ul>
+	
+	<script> 
+		var myNodelist = document.getElementsByTagName("LI");
+		var i;
+		for (i = 0; i < myNodelist.length; i++) {
+		var span = document.createElement("SPAN");
+		var txt = document.createTextNode("\u00D7");
+		span.className = "close";
+		span.appendChild(txt);
+		myNodelist[i].appendChild(span);
+}
+		var close = document.getElementsByClassName("close");
+		var i;
+		for (i = 0; i < close.length; i++) {
+  		close[i].onclick = function() {
+    	var div = this.parentElement;
+    	div.style.display = "none";
+  }
+}
+		var list = document.querySelector('ul');
+		list.addEventListener('click', function(ev){
+			if (ev.target.tagName === 'LI') {ev.target.classList.toggle('rows');
+		}
+	},false);
+		function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("input").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("list").appendChild(li);
+  }
+  document.getElementById("input").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+
+	</script>
+</body>
+</html>
